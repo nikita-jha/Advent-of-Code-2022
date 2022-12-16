@@ -79,6 +79,18 @@ public class Code {
             Pattern movePattern = Pattern.compile("^move (\\d+) from (\\d+) to (\\d+)$");
             Matcher m = movePattern.matcher(line);
 
+            //part 1
+//            if (m.find()) {
+//                int numToMove = Integer.parseInt(m.group(1));
+//                int moveFrom = Integer.parseInt(m.group(2));
+//                int moveTo = Integer.parseInt(m.group(3));
+//                for (int w = 0; w < numToMove; w++) {
+//                    String boxToMove = stacks.get(moveFrom-1).pop();
+//                    stacks.get(moveTo-1).push(boxToMove);
+//                }
+//            }
+
+            //part 2
             if (m.find()) {
                 int numToMove = Integer.parseInt(m.group(1));
                 int moveFrom = Integer.parseInt(m.group(2));
