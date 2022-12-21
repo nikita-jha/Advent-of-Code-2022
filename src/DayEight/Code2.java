@@ -1,4 +1,4 @@
-//Part 1
+//Part 2
 package DayEight;
 
 import java.io.BufferedReader;
@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code {
+public class Code2 {
 
     public static void main(String[] args) throws  Exception {
 
@@ -26,7 +26,6 @@ public class Code {
                 """;
 
         int lineCounter = 0;
-        int finalAnswer = 0;
         List<ArrayList<Integer>> list = new ArrayList<>();
         while ((line = br.readLine()) != null) {
         //for (String line : testData.split("\n")) {
@@ -51,6 +50,7 @@ public class Code {
         String line2;
         int linecounter2 = 0;
 
+        int max = 0;
         //for (String line2: testData.split("\n")) {
         while ((line2 = br2.readLine()) != null) {
             if (linecounter2 > 0 && linecounter2 < list.get(0).size()-1) {
@@ -62,36 +62,40 @@ public class Code {
 
                 int counter2 = 0;
                 for (int i = 1; i < arr.length - 1; i++) {
-                    boolean isHorizontal = check(Integer.parseInt(arr[i]), horizontal, i);
-                    boolean isVertical = check(Integer.parseInt(arr[i]), list.get(counter2++), linecounter2);
-                    if (isHorizontal || isVertical) {
-                        finalAnswer++;
+                    int horizontalScore = scenicScore(Integer.parseInt(arr[i]), horizontal, i);
+                    int verticalScore = scenicScore(Integer.parseInt(arr[i]), list.get(counter2++), linecounter2);
+                    int totalScore = horizontalScore * verticalScore;
+                    if (totalScore > max) {
+                        max = totalScore;
                     }
                 }
             }
             linecounter2++;
         }
-
-        System.out.println(finalAnswer + 2 * list.get(0).size() + list.size() * 2);
+        System.out.println(max);
 
     }
 
-    public static boolean check(int num, List<Integer> list, int index) {
-        boolean first = true;
-        boolean second = true;
-        for (int i = 0; i < index; i++) {
-            if (list.get(i) >= num) {
-                first = false;
+    public static int scenicScore(int num, List<Integer> list, int index) {
+        int scenicScore1 = 0;
+        int scenicScore2 = 0;
+        for (int i = index - 1; i >= 0; i--) {
+            if (list.get(i) < num) {
+                scenicScore1++;
+            } else if (list.get(i) >= num) {
+                scenicScore1++;
                 break;
             }
         }
-        for (int i = index+1; i < list.size(); i++) {
-            if (list.get(i) >= num) {
-                second = false;
-                break;
-            }
-        }
-        return first || second;
-    }
 
+        for (int i = index + 1; i < list.size(); i++) {
+            if (list.get(i) < num) {
+                scenicScore2++;
+            } else if (list.get(i) >= num) {
+                scenicScore2++;
+                break;
+            }
+        }
+        return scenicScore1 * scenicScore2;
+    }
 }
