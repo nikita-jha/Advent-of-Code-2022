@@ -11,10 +11,6 @@ public class DirectoryEntry extends FileEntry {
         this.parent = parent;
     }
 
-    public Collection<FileEntry> getFiles() {
-        return files.values();
-    }
-
     public void addFile(FileEntry fe) {
         files.put(fe.getName(), fe);
     }
