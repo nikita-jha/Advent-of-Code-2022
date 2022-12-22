@@ -62,9 +62,9 @@ public class Code {
 
                 int counter2 = 0;
                 for (int i = 1; i < arr.length - 1; i++) {
-                    boolean isHorizontal = check(Integer.parseInt(arr[i]), horizontal, i);
-                    boolean isVertical = check(Integer.parseInt(arr[i]), list.get(counter2++), linecounter2);
-                    if (isHorizontal || isVertical) {
+                    boolean horizontalVisible = check(Integer.parseInt(arr[i]), horizontal, i);
+                    boolean verticalVisible = check(Integer.parseInt(arr[i]), list.get(counter2++), linecounter2);
+                    if (horizontalVisible || verticalVisible) {
                         finalAnswer++;
                     }
                 }
