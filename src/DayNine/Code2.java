@@ -51,15 +51,15 @@ public class Code2 {
             int[] arrPoints = dict.get(arr[0]);
             for (int i = 0; i < moveAmount; i++) {
                 HEAD.setLocation(HEAD.getX() + arrPoints[0], HEAD.getY() + arrPoints[1]);
-                move(HEAD, P1, arrPoints[0], arrPoints[1]);
-                move(P1, P2, arrPoints[0], arrPoints[1]);
-                move(P2, P3, arrPoints[0], arrPoints[1]);
-                move(P3, P4, arrPoints[0], arrPoints[1]);
-                move(P4, P5, arrPoints[0], arrPoints[1]);
-                move(P5, P6, arrPoints[0], arrPoints[1]);
-                move(P6, P7, arrPoints[0], arrPoints[1]);
-                move(P7, P8, arrPoints[0], arrPoints[1]);
-                move(P8, TAIL, arrPoints[0], arrPoints[1]);
+                move(HEAD, P1);
+                move(P1, P2);
+                move(P2, P3);
+                move(P3, P4);
+                move(P4, P5);
+                move(P5, P6);
+                move(P6, P7);
+                move(P7, P8);
+                move(P8, TAIL);
                 set.add(new Point(TAIL.x, TAIL.y));
             }
 
@@ -74,7 +74,7 @@ public class Code2 {
         return (Math.abs(hx - tx) <= 1 && Math.abs(hy - ty) <= 1);
     }
 
-    public static void move(Point p1, Point p2, int xMove, int yMove) {
+    public static void move(Point p1, Point p2) {
         if (!touching(p1.x, p1.y, p2.x, p2.y)) {
             int sign_x = p1.x == p2.x ? 0 : (p1.x - p2.x) / Math.abs(p1.x - p2.x);
             int sign_y = p1.y == p2.y ? 0 : (p1.y - p2.y) / Math.abs(p1.y - p2.y);
