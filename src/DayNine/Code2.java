@@ -6,9 +6,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.*;
 
-public class Code {
+public class Code2 {
 
     static Point HEAD = new Point(0, 0);
+    static Point P1 = new Point(0, 0);
+    static Point P2 = new Point(0, 0);
+    static Point P3 = new Point(0, 0);
+    static Point P4 = new Point(0, 0);
+    static Point P5 = new Point(0, 0);
+    static Point P6 = new Point(0, 0);
+    static Point P7 = new Point(0, 0);
+    static Point P8 = new Point(0, 0);
     static Point TAIL = new Point(0, 0);
     public static void main(String[] args) throws Exception {
         File file = new File("/Users/nikitajha/Documents/NikitaFinal/Coding Projects/CompetitionCode-master/advent-of-" +
@@ -16,14 +24,14 @@ public class Code {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         String testdata = """
-                R 4
-                U 4
-                L 3
-                D 1
-                R 4
-                D 1
-                L 5
-                R 2
+                R 5
+                U 8
+                L 8
+                D 3
+                R 17
+                D 10
+                L 25
+                U 20
                 """;
 
         Set<Point> set = new HashSet<>();
@@ -42,11 +50,22 @@ public class Code {
             int moveAmount = Integer.parseInt(arr[1]);
             int[] arrPoints = dict.get(arr[0]);
             for (int i = 0; i < moveAmount; i++) {
-                move(arrPoints[0], arrPoints[1]);
+                HEAD.setLocation(HEAD.getX() + arrPoints[0], HEAD.getY() + arrPoints[1]);
+                move(HEAD, P1, arrPoints[0], arrPoints[1]);
+                move(P1, P2, arrPoints[0], arrPoints[1]);
+                move(P2, P3, arrPoints[0], arrPoints[1]);
+                move(P3, P4, arrPoints[0], arrPoints[1]);
+                move(P4, P5, arrPoints[0], arrPoints[1]);
+                move(P5, P6, arrPoints[0], arrPoints[1]);
+                move(P6, P7, arrPoints[0], arrPoints[1]);
+                move(P7, P8, arrPoints[0], arrPoints[1]);
+                move(P8, TAIL, arrPoints[0], arrPoints[1]);
                 set.add(new Point(TAIL.x, TAIL.y));
             }
 
+
         }
+
         System.out.println(set.size());
 
     }
@@ -55,15 +74,11 @@ public class Code {
         return (Math.abs(hx - tx) <= 1 && Math.abs(hy - ty) <= 1);
     }
 
-    public static void move(int xMove, int yMove) {
-        HEAD.setLocation(HEAD.getX() + xMove, HEAD.getY() + yMove);
-
-        if (!touching(HEAD.x, HEAD.y, TAIL.x, TAIL.y)) {
-            if (!touching(HEAD.x, HEAD.y, TAIL.x, TAIL.y)) {
-                int sign_x = HEAD.x == TAIL.x ? 0 : (HEAD.x - TAIL.x) / Math.abs(HEAD.x - TAIL.x);
-                int sign_y = HEAD.y == TAIL.y ? 0 : (HEAD.y - TAIL.y) / Math.abs(HEAD.y - TAIL.y);
-                TAIL.setLocation(TAIL.x + sign_x, TAIL.y + sign_y);
-            }
+    public static void move(Point p1, Point p2, int xMove, int yMove) {
+        if (!touching(p1.x, p1.y, p2.x, p2.y)) {
+            int sign_x = p1.x == p2.x ? 0 : (p1.x - p2.x) / Math.abs(p1.x - p2.x);
+            int sign_y = p1.y == p2.y ? 0 : (p1.y - p2.y) / Math.abs(p1.y - p2.y);
+            p2.setLocation(p2.x + sign_x, p2.y + sign_y);
         }
     }
 }
