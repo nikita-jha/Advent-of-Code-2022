@@ -11,7 +11,7 @@ public class Code {
         File file = new File("/Users/nikitajha/Documents/NikitaFinal/Coding Projects/CompetitionCode-master/" +
                 "advent-of-code-2022/src/DayTen/PuzzleInput");
         BufferedReader br = new BufferedReader(new FileReader(file));
-        //String line;
+        String line;
         String testdata = """
                 addx 15
                 addx -11
@@ -165,8 +165,8 @@ public class Code {
         int cycle =  0;
         int finalAnswer = 0;
 
-        //while ((line = br.readLine()) != null) {
-        for (String line : testdata.split("\n")) {
+        while ((line = br.readLine()) != null) {
+        //for (String line : testdata.split("\n")) {
             String[] arr = line.split(" ");
             if (arr[0].equals("noop")) {
                 cycle += 1;
@@ -185,5 +185,21 @@ public class Code {
             finalAnswer += signalStrength;
         }
         System.out.println(finalAnswer);
+
+        //Part 2
+        register=1;
+
+        String[][] screen = new String[6][40];
+        for (int row = 0; row < screen.length; row++) {
+            for (int position = 0; position < screen[0].length; position++) {
+                if (Math.abs(position - hashMap.get(register++)) <= 1) {
+                    screen[row][position] = "#";
+                } else {
+                    screen[row][position] = " ";
+                }
+                System.out.print(screen[row][position]);
+            }
+            System.out.println();
+        }
     }
 }
