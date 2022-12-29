@@ -132,7 +132,6 @@ public class Code {
         }
         long firstLargest = Integer.MIN_VALUE;
         long secondLargest = Integer.MIN_VALUE;
-        System.out.println(monkeyBusiness);
 
         for (long i : monkeyBusiness.values()) {
             if (i > firstLargest) {
@@ -142,8 +141,6 @@ public class Code {
                 secondLargest = i;
             }
         }
-        System.out.println(firstLargest);
-        System.out.println(secondLargest);
         System.out.println(firstLargest * secondLargest);
 
     }
